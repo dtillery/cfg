@@ -5,8 +5,20 @@
 export ZSH="/Users/dtillery/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
+
 # cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# python
+export PIP_REQUIRE_VIRTUALENV=true
+
+# mysql
+export PATH=$PATH:/usr/local/mysql/bin
+
+
+# work
+source .work/.workrc
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,7 +66,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pyenv rvm)
+plugins=(git kubectl pyenv rvm zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
