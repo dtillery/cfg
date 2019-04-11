@@ -11,6 +11,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # python
 export PIP_REQUIRE_VIRTUALENV=true
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # mysql
 export PATH=$PATH:/usr/local/mysql/bin

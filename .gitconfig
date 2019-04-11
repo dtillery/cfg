@@ -7,7 +7,10 @@
     user = dtillery
 
 [color]
-  branch = auto
-  diff = auto
-  status = auto
-  ui = true
+    branch = auto
+    diff = auto
+    status = auto
+    ui = true
+
+[core]
+    whitespace = fix

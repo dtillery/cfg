@@ -8,12 +8,12 @@ From [this blog post](https://www.atlassian.com/git/tutorials/dotfiles).
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
-### basic
+### homebrew
 ```
 # homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew install openssl gpg
+brew install openssl gpg libxml2
 ```
 
 ### python
@@ -22,6 +22,13 @@ sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_heade
  defaults write -g ApplePressAndHoldEnabled -bool false
 brew install readline xz
 brew install pyenv
+brew instsall pyenv-virtualenv
+git clone git://github.com/concordusapps/pyenv-implict.git ~/.pyenv/plugins/pyenv-implict
 pyenv install 2.7.15
 pyenv install
+```
+
+### k8s
+```
+brew install kubernetes-cli
 ```
