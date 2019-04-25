@@ -17,6 +17,8 @@ eval "$(pyenv virtualenv-init -)"
 # mysql
 export PATH=$PATH:/usr/local/mysql/bin
 
+# mongo
+export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
 
 # work
 source .work/.workrc

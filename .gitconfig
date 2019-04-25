@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
-	name = David Tillery
-	email = djtillery@gmail.com
+    name = David Tillery
+    email = djtillery@gmail.com
 
 [github]
     user = dtillery
@@ -14,3 +14,4 @@
 
 [core]
     whitespace = fix
+    excludesfile = /Users/dtillery/.gitignore
