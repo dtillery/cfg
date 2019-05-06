@@ -1,2 +1,6 @@
+.bash_history
+
+.python-version
+
 *.sublime-project
 *.sublime-workspace
