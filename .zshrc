@@ -23,6 +23,14 @@ export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
 # work
 source .work/.workrc
 
+# rake
+alias rake='noglob rake'
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
