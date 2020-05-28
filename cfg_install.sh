@@ -1,3 +1,4 @@
+# clone and install
 git clone --bare git@github.com:dtillery/cfg.git $HOME/.cfg
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
@@ -12,3 +13,7 @@ if [ $? = 0 ]; then
 fi;
 config checkout
 config config status.showUntrackedFiles no
+
+# make work dirs
+mkdir .work
+touch .work/.workrc
