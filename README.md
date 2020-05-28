@@ -26,6 +26,12 @@ Need to fix the install script to correctly remove/backup existing files.
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
+### zsh
+```
+# zsh-completions
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+```
+
 ### homebrew
 ```
 # homebrew
