@@ -1,4 +1,4 @@
-git clone --bare git@bitbucket.org:dtillery/cfg.git $HOME/.cfg
+git clone --bare git@github.com:dtillery/cfg.git $HOME/.cfg
 function config {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
