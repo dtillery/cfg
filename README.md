@@ -44,9 +44,8 @@ brew install openssl gpg libxml2
 ```
 brew install pyenv
 brew instsall pyenv-virtualenv
-# pyenv-implicit allows pyenv to change version automatically based on .python-version file
-git clone git://github.com/concordusapps/pyenv-implict.git ~/.pyenv/plugins/pyenv-implict
 pyenv install 3.8.2
+# may need to restart shell to get auto-change via .python-version files
 ```
 
 ### k8s
