@@ -42,14 +42,11 @@ brew install openssl gpg libxml2
 
 ### python
 ```
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
- defaults write -g ApplePressAndHoldEnabled -bool false
-brew install readline xz
 brew install pyenv
 brew instsall pyenv-virtualenv
+# pyenv-implicit allows pyenv to change version automatically based on .python-version file
 git clone git://github.com/concordusapps/pyenv-implict.git ~/.pyenv/plugins/pyenv-implict
-pyenv install 2.7.15
-pyenv install
+pyenv install 3.8.2
 ```
 
 ### k8s
