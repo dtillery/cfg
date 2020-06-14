@@ -1,0 +1,84 @@
+
+function exiftool_migrate_gps_data {
+    # Function to find all ARW files in a directory without GPS tags and attempt to
+    # tag them with the closest file's tags within a time-range.
+    # requires: exiftool, gdate
+    green=$'\e[1;32m'
+    red=$'\e[1;31m'
+    white=$'\e[0m'
+    blue=$'\e[1;34m'
+    datetime_format='%Y-%m-%d %H:%M:%S %Z'
+    fixed=()
+    unfixed=()
+
+    commit=$1
+    buffer_minutes=$2
+    if [[ -z $buffer_minutes ]]; then
+        buffer_minutes='2'
+    fi
+
+    # get every filename with missing GPS data
+    echo $blue"==== Starting with COMMIT=$commit and BUFFER=$buffer_minutes ===="$white
+    echo "Searching for files without GPS tags..."
+    missing_gps_filenames=($(exiftool -q -if 'not ($GPSLatitude and $GPSLongitude)' -json *.ARW | jq -r 'map(.SourceFile) | join(" ")'))
+    echo $blue"==== Found ${#missing_gps_filenames[@]} files without GPSLatitude and GPSLongitude tags"$white
+
+    for filename in $missing_gps_filenames; do
+        # get original datetime for file
+        datetime_original=$(exiftool -d $datetime_format -q -s3 -datetimeoriginal $filename)
+        echo $blue"==== $filename ($datetime_original) is missing GPS coordinates. ===="$white
+
+        # for each file, create buffer datetimes and find candidates with creation date within range
+        datetime_lower=$(gdate -d "$datetime_original -$buffer_minutes minutes" "+$datetime_format")
+        datetime_upper=$(gdate -d "$datetime_original +$buffer_minutes minutes" "+$datetime_format")
+        echo "Searching for candidates between $datetime_lower and $datetime_upper (buffer=$buffer_minutes min.)"
+        candidates=$(exiftool -q -json -d $datetime_format \
+            -if '$GPSLatitude and $GPSLongitude' \
+            -if "\$DateTimeOriginal ge '$datetime_lower'" \
+            -if "\$DateTimeOriginal le '$datetime_upper'" \
+            *.ARW)
+
+        # continue if no candidates found
+        if [[ -z $candidates ]]; then
+            echo $red"ZERO candidates found within buffer, skipping..."$white
+            unfixed+=("$filename")
+            continue
+        fi
+        echo $green"$(jq 'length' <<< $candidates) candidates found."$white
+
+        # for each candidate pull original datetime and determine which is closest to file.
+        closest_filename=''
+        closest_time=''
+        closest_diff=''
+        for candidate in $(jq -r 'map(.SourceFile) | join(" ")' <<< $candidates); do
+            candidate_time=$(exiftool -s3 -d $datetime_format -datetimeoriginal $candidate)
+            ((diff = $(gdate -d "$datetime_original" "+%s") - $(gdate -d "$candidate_time" "+%s")))
+            if [[ "$diff" -lt 0 ]]; then ((diff = diff * -1 )); fi
+
+            if [[ -z "$closest_diff" ]] || [[ "$diff" -lt "$closest_diff" ]]; then
+                closest_diff=$diff
+                closest_time=$candidate_time
+                closest_filename=$candidate
+            fi
+        done
+        echo "Closest candidate is $closest_filename at $closest_time (${green}$closest_diff sec diff${white})"
+
+        # Copy tags from candidate to file if commit flag is passed
+        if [[ "$commit" == "commit" ]]; then
+            echo "Copying GPS tags from $closest_filename to $filename"
+            mkdir -p originals fixed
+            exiftool -tagsfromfile $closest_filename -gps:all -wm wcg $filename
+            cp $filename fixed/
+            mv ${filename}_original originals/
+            fixed+=("$filename")
+        else
+            echo "DRY RUN not committing changes"
+            fixed+=("$filename")
+        fi
+    done
+
+    echo $blue"==== Work Complete ===="$white
+    echo $blue"Missing GPS: ${#missing_gps_filenames[@]}"$white
+    echo $green"Fixed (if committed): ${#fixed[@]} files ($fixed)"$white
+    echo $red"Unfixed: ${#unfixed[@]} ($unfixed)"$white
+}

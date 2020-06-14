@@ -9,6 +9,9 @@ ZSH_THEME="robbyrussell"
 # cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+# sublime
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+
 # python
 export PIP_REQUIRE_VIRTUALENV=true
 eval "$(pyenv init -)"
@@ -22,6 +25,9 @@ export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
 
 # work
 source .work/.workrc
+
+# random scripts
+source .random
 
 # rake
 alias rake='noglob rake'
