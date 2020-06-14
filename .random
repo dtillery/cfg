@@ -1,4 +1,3 @@
-
 function exiftool_migrate_gps_data {
     # Function to find all ARW files in a directory without GPS tags and attempt to
     # tag them with the closest file's tags within a time-range.
