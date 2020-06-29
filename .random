@@ -19,13 +19,16 @@ function exiftool_migrate_gps_data {
     # get every filename with missing GPS data
     echo $blue"==== Starting with COMMIT=$commit and BUFFER=$buffer_minutes ===="$white
     echo "Searching for files without GPS tags..."
-    missing_gps_filenames=($(exiftool -q -if 'not ($GPSLatitude and $GPSLongitude)' -json *.ARW | jq -r 'map(.SourceFile) | join(" ")'))
-    echo $blue"==== Found ${#missing_gps_filenames[@]} files without GPSLatitude and GPSLongitude tags"$white
+    missing_gps_filenames=($(exiftool -q -fileorder name -if 'not ($GPSLatitude and $GPSLongitude)' -json -ext arw . | jq -r 'map(.SourceFile) | join(" ")'))
+    found_count=${#missing_gps_filenames[@]}
+    echo $blue"==== Found $found_count files without GPSLatitude and GPSLongitude tags"$white
 
+    curr=0
     for filename in $missing_gps_filenames; do
+        let curr++
         # get original datetime for file
         datetime_original=$(exiftool -d $datetime_format -q -s3 -datetimeoriginal $filename)
-        echo $blue"==== $filename ($datetime_original) is missing GPS coordinates. ===="$white
+        echo $blue"==== ($curr/$found_count) $filename ($datetime_original) is missing GPS coordinates. ===="$white
 
         # for each file, create buffer datetimes and find candidates with creation date within range
         datetime_lower=$(gdate -d "$datetime_original -$buffer_minutes minutes" "+$datetime_format")
@@ -35,7 +38,7 @@ function exiftool_migrate_gps_data {
             -if '$GPSLatitude and $GPSLongitude' \
             -if "\$DateTimeOriginal ge '$datetime_lower'" \
             -if "\$DateTimeOriginal le '$datetime_upper'" \
-            *.ARW)
+            -ext arw .)
 
         # continue if no candidates found
         if [[ -z $candidates ]]; then
@@ -70,6 +73,7 @@ function exiftool_migrate_gps_data {
             cp $filename fixed/
             mv ${filename}_original originals/
             fixed+=("$filename")
+            touch gps_fix_log.txt
         else
             echo "DRY RUN not committing changes"
             fixed+=("$filename")
@@ -81,3 +85,6 @@ function exiftool_migrate_gps_data {
     echo $green"Fixed (if committed): ${#fixed[@]} files ($fixed)"$white
     echo $red"Unfixed: ${#unfixed[@]} ($unfixed)"$white
 }
+
+# find all pictures with diff offset time and set correctly and add 1 hour to all datetime fields
+# exiftool -fileorder name -if '$OffsetTime ne "-03:00"' -alldates+=1 -offsettime="-03:00" -offsettimeoriginal="-03:00" -offsettimedigitized="-03:00" -ext arw . && mkdir -p originals_bad_time && mv *_original originals_bad_time

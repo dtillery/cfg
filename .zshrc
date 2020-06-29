@@ -32,10 +32,10 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
 
 # work
-source .work/.workrc
+source $HOME/.work/.workrc
 
 # random scripts
-source .random
+source $HOME/.random
 
 # rake
 alias rake='noglob rake'
