@@ -1,5 +1,5 @@
 function exiftool_migrate_gps_data {
-    # Function to find all ARW files in a directory without GPS tags and attempt to
+    # Function to find all ARW/DNG files in a directory without GPS tags and attempt to
     # tag them with the closest file's tags within a time-range.
     # requires: exiftool, gdate
     green=$'\e[1;32m'
@@ -19,7 +19,7 @@ function exiftool_migrate_gps_data {
     # get every filename with missing GPS data
     echo $blue"==== Starting with COMMIT=$commit and BUFFER=$buffer_minutes ===="$white
     echo "Searching for files without GPS tags..."
-    missing_gps_filenames=($(exiftool -q -fileorder name -if 'not ($GPSLatitude and $GPSLongitude)' -json -ext arw . | jq -r 'map(.SourceFile) | join(" ")'))
+    missing_gps_filenames=($(exiftool -q -fileorder name -if 'not ($GPSLatitude and $GPSLongitude)' -json -ext arw -ext dng . | jq -r 'map(.SourceFile) | join(" ")'))
     found_count=${#missing_gps_filenames[@]}
     echo $blue"==== Found $found_count files without GPSLatitude and GPSLongitude tags"$white
 
@@ -38,7 +38,7 @@ function exiftool_migrate_gps_data {
             -if '$GPSLatitude and $GPSLongitude' \
             -if "\$DateTimeOriginal ge '$datetime_lower'" \
             -if "\$DateTimeOriginal le '$datetime_upper'" \
-            -ext arw .)
+            -ext arw -ext dng -ext heic .)
 
         # continue if no candidates found
         if [[ -z $candidates ]]; then
@@ -46,7 +46,7 @@ function exiftool_migrate_gps_data {
             unfixed+=("$filename")
             continue
         fi
-        echo $green"$(jq 'length' <<< $candidates) candidates found."$white
+        echo "$(jq 'length' <<< $candidates) candidates found."
 
         # for each candidate pull original datetime and determine which is closest to file.
         closest_filename=''
@@ -63,7 +63,7 @@ function exiftool_migrate_gps_data {
                 closest_filename=$candidate
             fi
         done
-        echo "Closest candidate is $closest_filename at $closest_time (${green}$closest_diff sec diff${white})"
+        echo "Closest candidate is ${green}$closest_filename${white} at $closest_time (${green}$closest_diff sec diff${white})"
 
         # Copy tags from candidate to file if commit flag is passed
         if [[ "$commit" == "commit" ]]; then
