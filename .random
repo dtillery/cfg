@@ -1,4 +1,5 @@
 function exiftool_migrate_gps_data {
+    # usage: exiftool_migrate_gps_data false 3
     # Function to find all ARW/DNG files in a directory without GPS tags and attempt to
     # tag them with the closest file's tags within a time-range.
     # requires: exiftool, gdate
@@ -38,7 +39,7 @@ function exiftool_migrate_gps_data {
             -if '$GPSLatitude and $GPSLongitude' \
             -if "\$DateTimeOriginal ge '$datetime_lower'" \
             -if "\$DateTimeOriginal le '$datetime_upper'" \
-            -ext arw -ext dng -ext heic .)
+            -ext arw -ext dng -ext heic -ext jpeg -ext jpg .)
 
         # continue if no candidates found
         if [[ -z $candidates ]]; then
@@ -88,3 +89,16 @@ function exiftool_migrate_gps_data {
 
 # find all pictures with diff offset time and set correctly and add 1 hour to all datetime fields
 # exiftool -fileorder name -if '$OffsetTime ne "-03:00"' -alldates+=1 -offsettime="-03:00" -offsettimeoriginal="-03:00" -offsettimedigitized="-03:00" -ext arw . && mkdir -p originals_bad_time && mv *_original originals_bad_time
+
+function delete_file_not_in_list {
+    listfile=$1
+
+    for f in *; do
+        if ! grep -qxFe "$f" $listfile; then
+        echo "Deleting: $f"
+        rm "$f"
+    else
+        echo "Keeping: $f"
+    fi
+    done
+}
