@@ -20,7 +20,7 @@ function exiftool_migrate_gps_data {
     # get every filename with missing GPS data
     echo $blue"==== Starting with COMMIT=$commit and BUFFER=$buffer_minutes ===="$white
     echo "Searching for files without GPS tags..."
-    missing_gps_filenames=($(exiftool -q -fileorder name -if 'not ($GPSLatitude and $GPSLongitude)' -json -ext arw -ext dng . | jq -r 'map(.SourceFile) | join(" ")'))
+    missing_gps_filenames=($(exiftool -q -fileorder name -if 'not ($GPSLatitude and $GPSLongitude)' -json -ext arw -ext rw2 -ext jpg -ext dng . | jq -r 'map(.SourceFile) | join(" ")'))
     found_count=${#missing_gps_filenames[@]}
     echo $blue"==== Found $found_count files without GPSLatitude and GPSLongitude tags"$white
 
@@ -39,7 +39,7 @@ function exiftool_migrate_gps_data {
             -if '$GPSLatitude and $GPSLongitude' \
             -if "\$DateTimeOriginal ge '$datetime_lower'" \
             -if "\$DateTimeOriginal le '$datetime_upper'" \
-            -ext arw -ext dng -ext heic -ext jpeg -ext jpg .)
+            -ext arw -ext rw2 -ext dng -ext heic -ext jpeg -ext jpg .)
 
         # continue if no candidates found
         if [[ -z $candidates ]]; then
@@ -87,8 +87,63 @@ function exiftool_migrate_gps_data {
     echo $red"Unfixed: ${#unfixed[@]} ($unfixed)"$white
 }
 
-# find all pictures with diff offset time and set correctly and add 1 hour to all datetime fields
+
 # exiftool -fileorder name -if '$OffsetTime ne "-03:00"' -alldates+=1 -offsettime="-03:00" -offsettimeoriginal="-03:00" -offsettimedigitized="-03:00" -ext arw . && mkdir -p originals_bad_time && mv *_original originals_bad_time
+function exiftool_shift_datetime {
+    # usage: exiftool_shift_datetime -f "-05:00" -d "-=1" -z "-05:00" -o "true"
+    # find all pictures with diff offset time and set correctly and add time to all datefields
+    filter=""
+    alldates_offset=""
+    new_timezone=""
+    save_original=""
+
+    while getopts ":f:d:z:o:" opt; do
+        case $opt in
+            f) filter="$OPTARG";;
+            d) alldates_offset="$OPTARG";;
+            z) new_timezone="$OPTARG";;
+            o) save_original="$OPTARG";;
+            \?) echo "Invalid option: -$OPTARG";;
+        esac
+    done
+
+    if [[ ! -z $filter ]]; then
+        echo "Filtering by OffsetTime not equal to $filter"
+        filter_arg="-if '\$OffsetTime ne \"$filter\"'"
+    fi
+
+    if [[ ! -z $alldates_offset ]]; then
+        echo "Setting alldates to $alldates_offset"
+        alldates_offset_arg="-alldates$alldates_offset"
+    fi
+
+    if [[ ! -z $new_timezone ]]; then
+        echo "Setting new timezone to $new_timezone"
+        new_timezone_arg="-offsettime=\"$new_timezone\" -offsettimeoriginal=\"$new_timezone\" -offsettimedigitized=\"$new_timezone\""
+    fi
+
+    if [[ ! -z $save_original ]]; then
+        echo "Saving originals in /originals_bad_time"
+        save_original_arg="&& mkdir -p originals_bad_time && mv *_original originals_bad_time"
+    fi
+
+    cmd="exiftool -fileorder name -ext arw -ext rw2 -ext dng -ext heic -ext jpeg -ext jpg $filter_arg $alldates_offset_arg $new_timezone_arg . $save_original_arg"
+    echo "Running cmd: $cmd"
+    eval "$cmd"
+}
+
+
+function exiftool_print_dates {
+    # usage: exiftool_print_dates ../photo.arw
+    # print the date fields I want
+    file=$1
+    echo $file
+    if [[ -z $file ]]; then
+        file="."
+    fi
+    cmd="exiftool -fileorder name -s -alldates -offsettime $file"
+    eval "$cmd"
+}
 
 function delete_file_not_in_list {
     listfile=$1
