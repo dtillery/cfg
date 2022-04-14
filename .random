@@ -92,6 +92,10 @@ function exiftool_migrate_gps_data {
 function exiftool_shift_datetime {
     # usage: exiftool_shift_datetime -f "-05:00" -d "-=1" -z "-05:00" -o "true"
     # find all pictures with diff offset time and set correctly and add time to all datefields
+    # -f: filter based on timezone not matching the input
+    # -d: hours to offset datetimes, in the form of +=hour or -=hour
+    # -z: new timezone to set to, probably same as filter
+    # -o: save original file
     filter=""
     alldates_offset=""
     new_timezone=""
