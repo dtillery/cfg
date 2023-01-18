@@ -87,6 +87,29 @@ function exiftool_migrate_gps_data {
     echo $red"Unfixed: ${#unfixed[@]} ($unfixed)"$white
 }
 
+function exiftool_copy_gps_data {
+    # copy all gps related tags from a source file to a destination file(s)
+    # usage: exiftool_copy_gps_data -s source.arw -d destination.arw -o "true"
+
+    while getopts ":s:d:f:o:" opt; do
+        case $opt in
+            s) src="$OPTARG";;
+            d) dest="$OPTARG";;
+            o) save_original="$OPTARG";;
+            \?) echo "Invalid option: -$OPTARG";;
+        esac
+    done
+
+    if [[ ! -z $save_original ]]; then
+        echo "Saving originals in /originals_bad_time"
+        save_original_arg="&& mkdir -p originals_no_gps && mv *_original originals_no_gps"
+    fi
+
+    cmd="exiftool -if 'not (\$GPSLatitude and \$GPSLongitude)' -tagsfromfile $src -gps:all -wm wcg $dest $save_original_arg"
+    echo "Running cmd: $cmd"
+    eval $cmd
+}
+
 
 # exiftool -fileorder name -if '$OffsetTime ne "-03:00"' -alldates+=1 -offsettime="-03:00" -offsettimeoriginal="-03:00" -offsettimedigitized="-03:00" -ext arw . && mkdir -p originals_bad_time && mv *_original originals_bad_time
 function exiftool_shift_datetime {
@@ -146,6 +169,18 @@ function exiftool_print_dates {
         file="."
     fi
     cmd="exiftool -fileorder name -s -alldates -offsettime $file"
+    eval "$cmd"
+}
+
+function exiftool_print_gps {
+    # usage: exiftool_print_gps ../photo.arw
+    # print the gps fields I want
+    file=$1
+    echo $file
+    if [[ -z $file ]]; then
+        file="."
+    fi
+    cmd="exiftool -fileorder name -s -gpslatitude -gpslongitude -gps:all  $file"
     eval "$cmd"
 }
 
