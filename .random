@@ -135,8 +135,8 @@ function exiftool_shift_datetime {
     done
 
     if [[ ! -z $filter ]]; then
-        echo "Filtering by OffsetTime not equal to $filter"
-        filter_arg="-if '\$OffsetTime ne \"$filter\"'"
+        echo "Filtering by OffsetTime not equal to $filter or OffsetTime is not set"
+        filter_arg="-if 'not \$OffsetTime or \$OffsetTime ne \"$filter\"'"
     fi
 
     if [[ ! -z $alldates_offset ]]; then
