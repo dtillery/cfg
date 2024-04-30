@@ -15,3 +15,5 @@
 [core]
     whitespace = fix
     excludesfile = /Users/dtillery/.gitignore
+[push]
+	autoSetupRemote = true

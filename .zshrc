@@ -1,9 +1,11 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -23,16 +25,23 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # sublime
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
-autoload -U bashcompinit
-bashcompinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+autoload -U bashcompinit && bashcompinit
 
 # python
 export PIP_REQUIRE_VIRTUALENV=false
-# eval "$(pyenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path --no-rehash)"
+# eval "$(pyenv virtualenv-init -)"
+# speed up prompt with below, but breaks "pyenv activate/deactivate"
+# https://github.com/pyenv/pyenv-virtualenv/issues/259#issuecomment-1731123922
+eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"
+_pyenv_virtualenv_hook
 # eval "$(register-python-argcomplete pipx)"
 export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.12.2/bin/python"
 
@@ -42,7 +51,7 @@ export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.12.2/bin/python"
 # export PATH=$PATH:/usr/local/mysql/bin
 
 # mongo
-export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
+# export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
 
 # work
 source $HOME/.work/.workrc
@@ -51,12 +60,12 @@ source $HOME/.work/.workrc
 source $HOME/.random
 
 # rake
-alias rake='noglob rake'
+# alias rake='noglob rake'
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # see https://github.com/ohmyzsh/ohmyzsh/issues/6835
 ZSH_DISABLE_COMPFIX=true
@@ -107,7 +116,8 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl pyenv rvm zsh-completions)
+# * "pyenv" plugin makes prompt slow right now, as mentioned above
+plugins=(git direnv zsh-prompt-benchmark zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -140,12 +150,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 unsetopt autocd
 # Created by `pipx` on 2024-02-21 02:08:48
 export PATH="$PATH:/Users/dtillery/.local/bin"
+
+# for homebrew
+export PATH="/usr/local/sbin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# postgres
+export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
