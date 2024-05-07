@@ -7,9 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # zsh config
 export ZSH="/Users/dtillery/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
@@ -18,13 +15,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # gst, for mopidy
 export GST_PLUGIN_PATH="$GST_PLUGIN_PATH:/usr/local/Cellar/gst-plugins-base:/usr/local/Cellar/gst-plugins-good:/usr/local/Cellar/gst-plugins-ugly"
 
-
-# cfg
+# config: custom cmd for configuration with "cfg" repo
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# sublime
+# sublime launch
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
+# speed things up a bit
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
@@ -45,22 +42,11 @@ _pyenv_virtualenv_hook
 # eval "$(register-python-argcomplete pipx)"
 export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.12.2/bin/python"
 
-
-
-# mysql
-# export PATH=$PATH:/usr/local/mysql/bin
-
-# mongo
-# export PATH="/usr/local/opt/mongodb@3.6/bin:$PATH"
-
-# work
+# load work tools
 source $HOME/.work/.workrc
 
-# random scripts
+# load random scripts
 source $HOME/.random
-
-# rake
-# alias rake='noglob rake'
 
 # nvm
 # export NVM_DIR="$HOME/.nvm"
@@ -108,38 +94,18 @@ ZSH_DISABLE_COMPFIX=true
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
 # * "pyenv" plugin makes prompt slow right now, as mentioned above
 plugins=(git direnv zsh-prompt-benchmark zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -152,7 +118,7 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt autocd
 # Created by `pipx` on 2024-02-21 02:08:48
-export PATH="$PATH:/Users/dtillery/.local/bin"
+export PATH="/Users/dtillery/.local/bin:$PATH"
 
 # for homebrew
 export PATH="/usr/local/sbin:$PATH"
