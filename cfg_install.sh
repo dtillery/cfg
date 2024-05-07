@@ -17,3 +17,6 @@ config config status.showUntrackedFiles no
 # make work dirs
 mkdir .work
 touch .work/.workrc
+
+# make misc dir
+mkdir .misc
