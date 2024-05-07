@@ -7,6 +7,6 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 # config: custom cmd for configuration with "cfg" repo
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-alias ls='ls -hAG --color=auto'
+alias ls='eza -hA --color --icons --sort=type'
 
 alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"

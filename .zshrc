@@ -12,6 +12,9 @@ export ZSH="/Users/dtillery/.oh-my-zsh"
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# eza completions
+export FPATH="~/.misc/eza/completions/zsh:$FPATH"
+
 # gst, for mopidy
 export GST_PLUGIN_PATH="$GST_PLUGIN_PATH:/usr/local/Cellar/gst-plugins-base:/usr/local/Cellar/gst-plugins-good:/usr/local/Cellar/gst-plugins-ugly"
 
