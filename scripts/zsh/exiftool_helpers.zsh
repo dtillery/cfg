@@ -1,5 +1,3 @@
-alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
-
 function exiftool_migrate_gps_data {
     # usage: exiftool_migrate_gps_data false 3
     # Function to find all ARW/DNG files in a directory without GPS tags and attempt to
@@ -184,17 +182,4 @@ function exiftool_print_gps {
     fi
     cmd="exiftool -fileorder name -s -gpslatitude -gpslongitude -gps:all  $file"
     eval "$cmd"
-}
-
-function delete_file_not_in_list {
-    listfile=$1
-
-    for f in *; do
-        if ! grep -qxFe "$f" $listfile; then
-        echo "Deleting: $f"
-        rm "$f"
-    else
-        echo "Keeping: $f"
-    fi
-    done
 }
