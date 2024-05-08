@@ -48,12 +48,19 @@ brew install openssl gpg libxml2
 #### brews to tap
 
 * awscli - for interacting with AWS
+* [bat](https://github.com/sharkdp/bat) - better `cat`
+* [cheat](https://github.com/cheat/cheat) - cheatsheets for common commands
 * [direnv](http://direnv.net) - for setting dir-specific environment variables (and executing whatever else)
+* [duf](https://github.com/muesli/duf) - better `df`
+* [dust](https://github.com/bootandy/dust) - better `du`
 * [eza](https://eza.rocks) - better `ls`
+* [fd](https://github.com/sharkdp/fd) - better `find`
+* [mcfly](https://github.com/cantino/mcfly) - better `ctrl-r`
 * [htop](https://htop.dev) - better `top`
 * [hyperfine](https://github.com/sharkdp/hyperfine) - cli benchmarking tool
 * [jq](https://jqlang.github.io/jq/) - cli json processor
 * [pipx](https://pipx.pypa.io/stable/) - install and run sandboxed python commands
+* [procs](https://github.com/dalance/procs) - better `ps`
 * [pyenv](https://github.com/pyenv/pyenv) - manage python virtualenvs
 * [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) - additional virtualenv management
 * [streamlink](https://streamlink.github.io) - for streaming... stuff

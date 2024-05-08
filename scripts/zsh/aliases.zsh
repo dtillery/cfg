@@ -10,3 +10,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias ls='eza -hA --color --icons --sort=type'
 
 alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# iina video player cli
+alias iina-cli='/Applications/IINA.app/Contents/MacOS/iina-cli'

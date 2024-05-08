@@ -86,5 +86,12 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # postgres
 export PATH="$PATH:/usr/local/opt/postgresql@16/bin"
 
+# mcfly
+export MCFLY_RESULTS=10
+export MCFLY_FUZZY=2
+export MCFLY_INTERFACE_VIEW=TOP
+export MCFLY_PROMPT="❯"
+eval "$(mcfly init zsh)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
