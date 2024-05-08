@@ -9,14 +9,7 @@ fi
 
 # zsh config
 export ZSH="/Users/dtillery/.oh-my-zsh"
-# ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# eza completions
-export FPATH="~/.misc/eza/completions/zsh:$FPATH"
-
-# gst, for mopidy
-export GST_PLUGIN_PATH="$GST_PLUGIN_PATH:/usr/local/Cellar/gst-plugins-base:/usr/local/Cellar/gst-plugins-good:/usr/local/Cellar/gst-plugins-ugly"
 
 # speed things up a bit
 autoload -Uz compinit
@@ -31,11 +24,13 @@ export PIP_REQUIRE_VIRTUALENV=false
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path --no-rehash)"
+eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"
+_pyenv_virtualenv_hook
+
 # eval "$(pyenv virtualenv-init -)"
 # speed up prompt with below, but breaks "pyenv activate/deactivate"
 # https://github.com/pyenv/pyenv-virtualenv/issues/259#issuecomment-1731123922
-eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"
-_pyenv_virtualenv_hook
+
 # eval "$(register-python-argcomplete pipx)"
 export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.12.2/bin/python"
 
@@ -71,7 +66,15 @@ for f ($HOME/scripts/zsh/*.zsh) . $f
 source $HOME/.work/.workrc
 
 unsetopt autocd
+
+# eza completions
+export FPATH="~/.misc/eza/completions/zsh:$FPATH"
+
+# gst, for mopidy
+export GST_PLUGIN_PATH="$GST_PLUGIN_PATH:/usr/local/Cellar/gst-plugins-base:/usr/local/Cellar/gst-plugins-good:/usr/local/Cellar/gst-plugins-ugly"
+
 # Created by `pipx` on 2024-02-21 02:08:48
+# setting at front of path to make sure you get these instead of pyenv shims
 export PATH="/Users/dtillery/.local/bin:$PATH"
 
 # for homebrew
@@ -81,7 +84,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # postgres
-export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
+export PATH="$PATH:/usr/local/opt/postgresql@16/bin"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
