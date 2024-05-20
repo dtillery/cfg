@@ -23,7 +23,10 @@
     colorMoved = default
 
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only --features=interactive
 
 [delta]
     side-by-side = true
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
