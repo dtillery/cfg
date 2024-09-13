@@ -18,4 +18,4 @@ alias iina-cli='/Applications/IINA.app/Contents/MacOS/iina-cli'
 alias cat='bat --paging=never'
 
 # mariners
-alias maribers='bitemex mlb -p mariners'
+alias maribers='biteme -p mlb mariners'
