@@ -55,6 +55,7 @@ brew install openssl gpg libxml2
 * [delta](https://github.com/dandavison/delta) - better `diff`
 * [duf](https://github.com/muesli/duf) - better `df`
 * [dust](https://github.com/bootandy/dust) - better `du`
+* [exiftool](https://exiftool.org) - read and write image EXIF metadata (not up to date with home download)
 * [eza](https://eza.rocks) - better `ls`
 * [fd](https://github.com/sharkdp/fd) - better `find`
 * [fx](https://github.com/antonmedv/fx) - cli JSON viewer
@@ -74,8 +75,3 @@ Install these via pipx for python project management and tooling:
 
 * [black](https://black.readthedocs.io/en/stable/) - code formatter
 * [poetry](https://python-poetry.org) - packaging and dependency management
-
-### exiftool
-I'm not sure how I originally installed exiftool. You can get it either from the
-[site](https://exiftool.org/install.html#MacOS) itself or via homebrew (though it looks
-like it's behind the most current version).
