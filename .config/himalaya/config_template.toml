@@ -1,0 +1,26 @@
+# copy, update values and rename to config.toml
+
+[accounts.gmail]
+default = true
+email = "djtillery@gmail.com"
+display-name = "David Tillery"
+downloads-dir = "~/Downloads"
+
+folder.alias.inbox = "INBOX"
+folder.alias.sent = "[Gmail]/Sent Mail"
+folder.alias.drafts = "[Gmail]/Drafts"
+folder.alias.trash = "[Gmail]/Trash"
+
+backend = "imap"
+message.send.backend = "smtp"
+imap.host = "imap.gmail.com"
+imap.port = 993
+imap.encryption = "tls"
+imap.login = "djtillery@gmail.com"
+imap.passwd.raw = "REPLACE ME"
+
+smtp.host = "smtp.gmail.com"
+smtp.port = 465
+smtp.encryption = "tls"
+smtp.login = "djtillery@gmail.com"
+smtp.passwd.raw = "REPLACE ME"

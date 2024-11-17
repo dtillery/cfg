@@ -1,0 +1,12 @@
+[global]
+# disable_stdin = true
+hide_env_diff = true
+
+[whitelist]
+exact = [
+    "~/src/recyoself/.envrc",
+    "~/src/travelers/.envrc",
+    "~/src/kkjukebox/.envrc",
+    "~/src/afft/.envrc",
+    "~/src/biteme/.envrc"
+]

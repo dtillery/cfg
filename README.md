@@ -59,6 +59,7 @@ brew install openssl gpg libxml2
 * [eza](https://eza.rocks) - better `ls`
 * [fd](https://github.com/sharkdp/fd) - better `find`
 * [fx](https://github.com/antonmedv/fx) - cli JSON viewer
+* [himalaya] (https://github.com/pimalaya/himalaya) - cli email library (need 1.0.0-beta.4)
 * [mcfly](https://github.com/cantino/mcfly) - better `ctrl-r`
 * [htop](https://htop.dev) - better `top`
 * [hyperfine](https://github.com/sharkdp/hyperfine) - cli benchmarking tool

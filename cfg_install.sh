@@ -14,9 +14,22 @@ fi;
 config checkout
 config config status.showUntrackedFiles no
 
+# make .config dir
+mkdir -p .config
+
 # make work dirs
-mkdir .work
+mkdir -p .work
 touch .work/.workrc
 
-# make misc dir
-mkdir .misc
+# aws credential/config location
+mkdir -p .aws
+touch .aws/credentials
+touch .aws/config
+
+# src dir
+mkdir -p src
+
+
+# make misc dirs
+mkdir -p .misc
+mkdir -p .logs
