@@ -3,6 +3,19 @@ Shamelessly based on [this blog post](https://www.atlassian.com/git/tutorials/do
 
 ## install
 
+### Copy or Generate Keys
+Creating new public and private keys will require updates in all relevant locations (github, servers, etc.)
+
+#### SSH
+```bash
+mkdir -p .ssh
+cd .ssh
+ssh-keygen -t rsa -b 4096 -C "djtillery@gmail.com"
+```
+
+#### AWS
+Generate new  `aws_acccess_key_id` and `aws_secret_access_key` into `.aws/credentials`.
+
 ### From Github
 ```bash
 # install oh-my-zsh
