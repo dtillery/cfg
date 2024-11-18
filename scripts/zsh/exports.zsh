@@ -13,14 +13,14 @@ export TRAVELERS_RANDOMIZE_STAGGER_NUM=true
 export TRAVELERS_INTERLUDES_FREQ=random
 export TRAVELERS_INTERLUDES_FREQ_LOWER_SEGMENTS=10
 export TRAVELERS_INTERLUDES_FREQ_UPPER_SEGMENTS=20
-export TRAVELERS_INTERLUDES_DIR=~/.config/travelers/interludes
+export TRAVELERS_INTERLUDES_DIR=~/Music/lib/travelers/interludes
 
 . ~/scripts/zsh/completions/travelers-complete.zsh
 
 # kkjukebox config
 export KKJUKEBOX_FORCE_CUT=false
 export KKJUKEBOX_LOG_LEVEL=INFO
-export KKJUKEBOX_MUSIC_DIR=~/src/kkjukebox/music
+export KKJUKEBOX_MUSIC_DIR=~/Music/lib/kkjukebox
 
 export KKJUKEBOX_HOURLY_GAME=random
 export KKJUKEBOX_HOURLY_HOUR=now
