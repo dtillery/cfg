@@ -87,7 +87,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/local/opt/postgresql@16/bin"
 
 # mcfly
-export MCFLY_RESULTS=10
+export MCFLY_RESULTS=20
 export MCFLY_FUZZY=2
 export MCFLY_INTERFACE_VIEW=TOP
 export MCFLY_PROMPT="❯"

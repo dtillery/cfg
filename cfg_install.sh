@@ -21,6 +21,10 @@ mkdir -p .config
 mkdir -p .work
 touch .work/.workrc
 
+# ssh credentials/config
+mkdir -p .ssh
+touch .ssh/config
+
 # aws credential/config location
 mkdir -p .aws
 touch .aws/credentials
