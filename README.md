@@ -4,11 +4,14 @@ Shamelessly based on [this blog post](https://www.atlassian.com/git/tutorials/do
 ## install
 
 ### MacOS
-Change some MacOS defaults.
+Change some MacOS defaults (requires restart).
 
 ```bash
 defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g com.apple.swipescrolldirection -bool false
 ```
+
+**Download XCode on app store.**
 
 ### Copy or Generate Keys
 Creating new public and private keys will require updates in all relevant locations (github, servers, etc.)
@@ -28,7 +31,7 @@ Install [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme and comp
 
 ```bash
 # install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -38,7 +41,10 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 ```
 
 ### Run Install Script
-May need to install homebrew and tools first or will get errors from `.zshrc`
+Git can't clone a repository and overwrite existing files. That means that everything in this cfg repo
+**must** not exist already, or the script will fail until you remove them. In practice, this
+means you most likely will need to delete the `.zshrc` file generated when installing oh-my-zsh.
+
 
 ```bash
 # run install script
@@ -50,18 +56,17 @@ curl -Lks https://raw.githubusercontent.com/dtillery/cfg/master/cfg_install.sh |
 
 If you're getting "no such file or directly found" errors for the curl, there's probably some weird bullshit characters in your c/p, so just retype it all.
 
-You'll get errors related to later things that don't exist yet for zsh to source. Whatever, just install things and source later.
-
-Need to fix the install script to correctly remove/backup existing files.
+You'll get errors related to later things that don't exist yet for zsh to source
+(setup commands, tool aliases, etc). This is OK, just proceed to install them afterwards.
 
 ### Homebrew
 Install homebrew:
 
 ```bash
 # homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew install openssl gpg libxml2
+brew install openssl gpg libxml2 xz
 ```
 
 Install these tools via homebrew:
@@ -113,3 +118,31 @@ pipx install git+ssh://git@github.com/dtillery/travelers.git
 pipx install git+ssh://git@github.com/dtillery/kkjukebox.git
 pipx install git+ssh://git@github.com/dtillery/biteme.git
 ```
+
+## New Computer Setup (WIP)
+
+* Go through initial setup screens
+    * set Account Name to "dtillery"
+* Change Mac Settings
+    * change scroll direction
+    * change key repeat/delay rates
+    * Add keyboard shortcuts for spaces (under keyboard shortcuts > mission control)
+* Add google account
+    * mail
+    * contacts
+    * calendars
+* Install Important Apps
+    * 1Password
+    * Alfred
+    * iTerm2
+    * BetterTouchTool
+    * SublimeText
+    * Xcode
+    * Bartender
+    * Moom
+    * Dash (v4)
+    * lightroom
+    * Daisy Disk
+    * App Store apps
+* General Settings
+    * iCloud Private Relay
