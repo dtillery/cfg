@@ -32,7 +32,7 @@ _pyenv_virtualenv_hook
 # https://github.com/pyenv/pyenv-virtualenv/issues/259#issuecomment-1731123922
 
 # eval "$(register-python-argcomplete pipx)"
-export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.12.2/bin/python"
+export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.13.0/bin/python"
 
 # nvm
 # export NVM_DIR="$HOME/.nvm"

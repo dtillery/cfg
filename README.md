@@ -1,6 +1,12 @@
 # cfg
 Shamelessly based on [this blog post](https://www.atlassian.com/git/tutorials/dotfiles).
 
+## Todo
+* [ ] Handle existing files within install script.
+* [ ] write cheats for
+    * [ ] brew commands (leaves)
+    * [ ] pipx (specific pyenv version)
+
 ## install
 
 ### MacOS
@@ -66,7 +72,7 @@ Install homebrew:
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-brew install openssl gpg libxml2 xz
+brew install openssl gpg libxml2 xz ffmpeg
 ```
 
 Install these tools via homebrew:
@@ -131,6 +137,7 @@ pipx install git+ssh://git@github.com/dtillery/biteme.git
     * mail
     * contacts
     * calendars
+* run cfg, install cli tools
 * Install Important Apps
     * 1Password
     * Alfred
@@ -146,3 +153,10 @@ pipx install git+ssh://git@github.com/dtillery/biteme.git
     * App Store apps
 * General Settings
     * iCloud Private Relay
+* Transfer Files (Target Disk Mode)
+    * Music
+        * Copy exactly, then hold option and open Music to choose library.
+    * Photos
+        * Avoid Photos library and Lightroom
+    * Movies
+    * Documents
