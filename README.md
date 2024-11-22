@@ -42,6 +42,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # install powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
+# install MesloGS NF via powerlevel10k
+p10k configure
+
 # zsh-completions
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 ```
@@ -71,11 +74,22 @@ Install homebrew:
 ```bash
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-brew install openssl gpg libxml2 xz ffmpeg
 ```
 
-Install these tools via homebrew:
+Install these first:
+
+* openssl
+* gpg
+* libxml2
+* xz (pyenv requirement)
+* ffmpeg
+* php (Alfred workflows)
+
+```bash
+brew install openssl gpg libxml2 xz ffmpeg php
+```
+
+Then install these tools via homebrew:
 
 * awscli - for interacting with AWS
 * [bat](https://github.com/sharkdp/bat) - better `cat`
@@ -150,6 +164,8 @@ pipx install git+ssh://git@github.com/dtillery/biteme.git
     * Dash (v4)
     * lightroom
     * Daisy Disk
+    * IINA
+    * Doll/Badgeify
     * App Store apps
 * General Settings
     * iCloud Private Relay
