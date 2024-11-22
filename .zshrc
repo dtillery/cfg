@@ -19,6 +19,16 @@ done
 compinit -C
 autoload -U bashcompinit && bashcompinit
 
+# homebrew setup
+if [ $(uname -m) = "arm64" ]; then
+  # apple silicon
+  export PATH="/opt/homebrew/bin:$PATH"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  # intel
+  export PATH="/usr/local/sbin:$PATH"
+fi
+
 # python
 export PIP_REQUIRE_VIRTUALENV=false
 export PYENV_ROOT="$HOME/.pyenv"
@@ -76,9 +86,6 @@ export GST_PLUGIN_PATH="$GST_PLUGIN_PATH:/usr/local/Cellar/gst-plugins-base:/usr
 # Created by `pipx` on 2024-02-21 02:08:48
 # setting at front of path to make sure you get these instead of pyenv shims
 export PATH="/Users/dtillery/.local/bin:$PATH"
-
-# for homebrew
-export PATH="/usr/local/sbin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
