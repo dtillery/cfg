@@ -96,7 +96,7 @@ Then install these tools via homebrew:
 * [cheat](https://github.com/cheat/cheat) - cheatsheets for common commands
 * [csvlens](https://github.com/YS-L/csvlens) - cli CSV viewer
 * [direnv](http://direnv.net) - for setting dir-specific environment variables (and executing whatever else)
-* [delta](https://github.com/dandavison/delta) - better `diff`
+* [git-delta](https://github.com/dandavison/delta) - better `diff`
 * [duf](https://github.com/muesli/duf) - better `df`
 * [dust](https://github.com/bootandy/dust) - better `du`
 * [exiftool](https://exiftool.org) - read and write image EXIF metadata (not up to date with home download)
