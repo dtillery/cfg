@@ -39,3 +39,4 @@ export KKJUKEBOX_KK_LL_LOWER=60
 
 # biteme config
 export BITEME_PLAY=true
+export BITEME_MEDIA_PLAYER="iina"
