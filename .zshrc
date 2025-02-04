@@ -31,18 +31,6 @@ fi
 
 # python
 export PIP_REQUIRE_VIRTUALENV=false
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path --no-rehash)"
-eval "$(pyenv virtualenv-init - | sed s/precmd/chpwd/g)"
-_pyenv_virtualenv_hook
-
-# eval "$(pyenv virtualenv-init -)"
-# speed up prompt with below, but breaks "pyenv activate/deactivate"
-# https://github.com/pyenv/pyenv-virtualenv/issues/259#issuecomment-1731123922
-
-# eval "$(register-python-argcomplete pipx)"
-export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.13.0/bin/python"
 
 # nvm
 # export NVM_DIR="$HOME/.nvm"
@@ -57,7 +45,6 @@ ZSH_DISABLE_COMPFIX=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# * "pyenv" plugin makes prompt slow right now, as mentioned above
 plugins=(git direnv zsh-prompt-benchmark zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
@@ -92,6 +79,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # postgres
 export PATH="$PATH:/usr/local/opt/postgresql@16/bin"
+
+# sublime text
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 
 # mcfly
 export MCFLY_RESULTS=20

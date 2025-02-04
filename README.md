@@ -5,7 +5,7 @@ Shamelessly based on [this blog post](https://www.atlassian.com/git/tutorials/do
 * [ ] Handle existing files within install script.
 * [ ] write cheats for
     * [ ] brew commands (leaves)
-    * [ ] pipx (specific pyenv version)
+    * [ ] uv
 
 ## install
 
@@ -81,7 +81,6 @@ Install these first:
 * openssl
 * gpg
 * libxml2
-* xz (pyenv requirement)
 * ffmpeg
 * php (Alfred workflows)
 
@@ -108,23 +107,21 @@ Then install these tools via homebrew:
 * [htop](https://htop.dev) - better `top`
 * [hyperfine](https://github.com/sharkdp/hyperfine) - cli benchmarking tool
 * [jq](https://jqlang.github.io/jq/) - cli JSON processor
-* [pipx](https://pipx.pypa.io/stable/) - install and run sandboxed python commands
 * [procs](https://github.com/dalance/procs) - better `ps`
-* [pyenv](https://github.com/pyenv/pyenv) - manage python virtualenvs
-* [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) - additional virtualenv management
 * [streamlink](https://streamlink.github.io) - for streaming... stuff
+* [uv](https://docs.astral.sh/uv/) - python version/venv/project/tool management
 * watch - I guess watch doesn't come by default on macs?
 
-### pipx
-Set the global pyenv python version:
+### uv
+Install relevant python versions
 ```bash
-pyenv global 3.13.0
+uv python install 3.13
+uv python install 3.12
 ```
-Install these via pipx for python project management and tooling:
+Install these via `uv tool` for python project management and tooling:
 
 * [black](https://black.readthedocs.io/en/stable/) - python code formatter
 * [mypy](https://mypy.readthedocs.io/en/stable/) - python code linter
-* [poetry](https://python-poetry.org) - python packaging and dependency management
 
 Install other useful tools:
 
@@ -133,10 +130,10 @@ Install other useful tools:
 Optionally install personal apps:
 
 ```bash
-pipx install git+ssh://git@github.com/dtillery/recyoself.git
-pipx install git+ssh://git@github.com/dtillery/travelers.git
-pipx install git+ssh://git@github.com/dtillery/kkjukebox.git
-pipx install git+ssh://git@github.com/dtillery/biteme.git
+uv tool install git+ssh://git@github.com/dtillery/recyoself.git
+uv tool install git+ssh://git@github.com/dtillery/travelers.git
+uv tool install -p3.12 git+ssh://git@github.com/dtillery/kkjukebox.git
+uv tool install git+ssh://git@github.com/dtillery/biteme.git
 ```
 
 ## New Computer Setup (WIP)

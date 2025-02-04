@@ -1,0 +1,13 @@
+---
+syntax: bash
+tags: [ python, environments ]
+---
+
+# install a tool from github
+uv tool install git+ssh://git@github.com/<user>/<package>.git
+
+# upgrade tool
+uv tool upgrade <package>
+
+# uninstall tool
+uv uninstall <package>

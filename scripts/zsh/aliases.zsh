@@ -1,6 +1,3 @@
-# sublime launch
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-
 alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
 
