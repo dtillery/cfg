@@ -15,8 +15,6 @@ export TRAVELERS_INTERLUDES_FREQ_LOWER_SEGMENTS=10
 export TRAVELERS_INTERLUDES_FREQ_UPPER_SEGMENTS=20
 export TRAVELERS_INTERLUDES_DIR=~/Music/lib/travelers/interludes
 
-. ~/scripts/zsh/completions/travelers-complete.zsh
-
 # kkjukebox config
 export KKJUKEBOX_FORCE_CUT=false
 export KKJUKEBOX_LOG_LEVEL=INFO
@@ -34,8 +32,6 @@ export KKJUKEBOX_KK_VERSIONS="aircheck musicbox"
 export KKJUKEBOX_KK_LOOP_LENGTH=random
 export KKJUKEBOX_KK_LL_UPPER=120
 export KKJUKEBOX_KK_LL_LOWER=60
-
-. ~/scripts/zsh/completions/kkjukebox-complete.zsh
 
 # biteme config
 export BITEME_PLAY=true

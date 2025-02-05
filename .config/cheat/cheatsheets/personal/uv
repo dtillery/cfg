@@ -3,6 +3,9 @@ syntax: bash
 tags: [ python, environments ]
 ---
 
+# install new python version
+uv python install <version>
+
 # install a tool from github
 uv tool install git+ssh://git@github.com/<user>/<package>.git
 
@@ -11,3 +14,30 @@ uv tool upgrade <package>
 
 # uninstall tool
 uv uninstall <package>
+
+# completely empty cache
+uv cache clean
+
+# remove unreachable objects from cache
+uv cache prune
+
+# run script
+uv run example.py
+
+# Example of inline script metadata
+# Add the following (incl. pound) to the top of a script, chmod 744, run ./script.py
+# from: https://treyhunner.com/2024/12/lazy-self-installing-python-scripts-with-uv/
+
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "click",
+#   "rich-click"
+# ]
+# [tool.uv]
+# exclude-newer = "2025-02-05T00:00:00Z"
+# ///
+
+# Generate script file with some inline metadata placeholders
+uv init --script example.py --python 3.13

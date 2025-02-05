@@ -58,6 +58,19 @@ source $ZSH/oh-my-zsh.sh
 
 # source all .zsh files
 for f ($HOME/scripts/zsh/*.zsh) . $f
+# source completions
+for c ($HOME/scripts/zsh/completions/*.zsh) . $c
+
+# uv completions
+eval "$(uv generate-shell-completion zsh)"
+_uv_run_mod() {
+    if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+        _arguments '*:filename:_files'
+    else
+        _uv "$@"
+    fi
+}
+compdef _uv_run_mod uv
 
 # load work tools
 source $HOME/.work/.workrc
