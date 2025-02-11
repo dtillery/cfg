@@ -3,6 +3,7 @@ Shamelessly based on [this blog post](https://www.atlassian.com/git/tutorials/do
 
 ## Todo
 * [ ] Handle existing files within install script.
+* [ ] use Brewfile for setup
 * [ ] write cheats for
     * [ ] brew commands (leaves)
     * [ ] uv
