@@ -1,3 +1,6 @@
+# tldr
+export TLRC_CONFIG=~/.config/tlrc/config.toml
+
 # travelers config
 export TRAVELERS_TRAVELERS="all"
 export TRAVELERS_LOG_LEVEL=INFO
