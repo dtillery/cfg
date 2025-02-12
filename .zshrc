@@ -56,6 +56,9 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+# set cfg alias for dotfile management
+alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
 # source all .zsh files
 for f ($HOME/scripts/zsh/*.zsh) . $f
 # source completions

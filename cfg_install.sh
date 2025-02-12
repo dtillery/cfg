@@ -1,18 +1,20 @@
 # clone and install
 git clone --bare git@github.com:dtillery/cfg.git $HOME/.cfg
-function config {
+function cfg {
    /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
-mkdir -p .config-backup
-config checkout
+
+# copy pre-existing files found to backups dir
+mkdir -p .cfg-existing-backups
+cfg checkout
 if [ $? = 0 ]; then
   echo "Checked out config.";
   else
     echo "Backing up pre-existing dot files.";
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    cfg checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .cfg-existing-backups/{}
 fi;
-config checkout
-config config status.showUntrackedFiles no
+cfg checkout
+cfg config status.showUntrackedFiles no
 
 # make .config dir
 mkdir -p .config
@@ -32,7 +34,6 @@ touch .aws/config
 
 # src dir
 mkdir -p src
-
 
 # make misc dirs
 mkdir -p .misc
