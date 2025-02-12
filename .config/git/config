@@ -14,7 +14,7 @@
 
 [core]
     whitespace = fix
-    excludesfile = /Users/dtillery/.gitignore
+    excludesfile = ~/.config/git/ignore
     pager = delta
 [push]
 	autoSetupRemote = true

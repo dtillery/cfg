@@ -1,0 +1,12 @@
+*.bak
+*.tmp
+.DS_Store
+
+.bash_history
+
+.python-version
+*.pyc
+*.pyo
+
+*.sublime-project
+*.sublime-workspace
