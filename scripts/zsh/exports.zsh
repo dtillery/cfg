@@ -1,6 +1,9 @@
 # tldr
 export TLRC_CONFIG=~/.config/tlrc/config.toml
 
+# make `direnv` silent
+export DIRENV_LOG_FORMAT=
+
 # travelers config
 export TRAVELERS_TRAVELERS="all"
 export TRAVELERS_LOG_LEVEL=INFO
