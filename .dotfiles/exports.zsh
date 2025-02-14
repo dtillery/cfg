@@ -1,10 +1,36 @@
-# tldr
-export TLRC_CONFIG=~/.config/tlrc/config.toml
+#########
+# tools #
+#########
 
+# direnv
 # make `direnv` silent
 export DIRENV_LOG_FORMAT=
 
-# travelers config
+# eza completions
+export FPATH="~/.misc/eza/completions/zsh:$FPATH"
+
+# gst (for mopidy)
+export GST_PLUGIN_PATH="$GST_PLUGIN_PATH:/usr/local/Cellar/gst-plugins-base:/usr/local/Cellar/gst-plugins-good:/usr/local/Cellar/gst-plugins-ugly"
+
+# mcfly
+export MCFLY_RESULTS=20
+export MCFLY_FUZZY=2
+export MCFLY_INTERFACE_VIEW=TOP
+export MCFLY_PROMPT="❯"
+eval "$(mcfly init zsh)"
+
+# python
+export PIP_REQUIRE_VIRTUALENV=true
+
+# tldr
+export TLRC_CONFIG=~/.config/tlrc/config.toml
+
+
+############
+# personal #
+############
+
+# travelers
 export TRAVELERS_TRAVELERS="all"
 export TRAVELERS_LOG_LEVEL=INFO
 export TRAVELERS_ALL_PLAYING_SECS=60
@@ -21,7 +47,7 @@ export TRAVELERS_INTERLUDES_FREQ_LOWER_SEGMENTS=10
 export TRAVELERS_INTERLUDES_FREQ_UPPER_SEGMENTS=20
 export TRAVELERS_INTERLUDES_DIR=~/Music/lib/travelers/interludes
 
-# kkjukebox config
+# kkjukebox
 export KKJUKEBOX_FORCE_CUT=false
 export KKJUKEBOX_LOG_LEVEL=INFO
 export KKJUKEBOX_MUSIC_DIR=~/Music/lib/kkjukebox
@@ -39,6 +65,6 @@ export KKJUKEBOX_KK_LOOP_LENGTH=random
 export KKJUKEBOX_KK_LL_UPPER=120
 export KKJUKEBOX_KK_LL_LOWER=60
 
-# biteme config
+# biteme
 export BITEME_PLAY=true
 export BITEME_MEDIA_PLAYER="iina"

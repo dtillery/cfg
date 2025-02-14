@@ -19,10 +19,6 @@ cfg config status.showUntrackedFiles no
 # make .config dir
 mkdir -p .config
 
-# make work dirs
-mkdir -p .work
-touch .work/.workrc
-
 # ssh credentials/config
 mkdir -p .ssh
 touch .ssh/config
