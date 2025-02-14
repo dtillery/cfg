@@ -1,7 +1,9 @@
 alias zshconfig="subl ~/.zshrc"
 alias ohmyzsh="subl ~/.oh-my-zsh"
 
-alias ls='eza -hA --color --icons --sort=type'
+# ls to eza
+alias ls='eza -hA --color --icons --sort=type --time-style=long-iso'
+alias lt='ls -T -L3'
 
 alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
 
