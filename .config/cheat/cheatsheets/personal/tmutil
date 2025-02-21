@@ -1,0 +1,16 @@
+---
+syntax: bash
+tags: [ python, environments ]
+---
+
+# search logs for time machine errors in last 24 hours
+log show --info --style compact --predicate '(subsystem == "com.apple.TimeMachine") && (eventMessage like[cd] "Failed * acquire device lock assertion*")' --last 24h
+
+# delete local snapshot by date
+tmutil deletelocalsnapshots 2025-02-19-212906
+
+# add exclusion for file/folder
+tmutil addexclusion "/Volumes/Macintosh HD/Users/dtillery/Library/Containers/com.apple.findmy.FindMyWidgetItems/"
+
+# confirm exclusion added
+xattr -l /Volumes/Macintosh\ HD/Users/dtillery/Library/Containers/com.apple.findmy.FindMyWidgetItems

@@ -127,6 +127,7 @@ Install these via `uv tool` for python project management and tooling:
 Install other useful tools:
 
 * [rexi](https://github.com/royreznik/rexi) - interactive regex evaluation tool
+* [pymusiclooper](https://github.com/arkrow/PyMusicLooper) - play/cut music loops
 
 Optionally install personal apps:
 
