@@ -6,6 +6,16 @@ tags: [ python, environments ]
 # install new python version
 uv python install <version>
 
+# add package to project
+uv add <package>
+
+# view outdated packages in project
+uv tree --outdated --depth=1
+
+# upgrade all outdated packages in project
+uv lock --upgrade
+uv sync
+
 # install a tool from github
 uv tool install git+ssh://git@github.com/<user>/<package>.git
 
