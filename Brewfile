@@ -58,6 +58,8 @@ brew "tlrc"
 brew "uv"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
 # Ookla Speedtest
 brew "teamookla/speedtest/speedtest"
 # Password manager that keeps all passwords secure behind one password
