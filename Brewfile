@@ -38,6 +38,8 @@ brew "htop"
 brew "httpie"
 # Command-line benchmarking tool
 brew "hyperfine"
+# CLI wrapper for basic network utilities on macOS - ip command
+brew "iproute2mac"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # GNOME XML library
@@ -78,6 +80,8 @@ cask "db-browser-for-sqlite"
 cask "ghostty"
 # Free and open-source media player
 cask "iina"
+# Audio tagger focusing on efficiency
+cask "kid3"
 # Utility to move and zoom windows—on one display
 cask "moom"
 # Text editor for code, markup and prose

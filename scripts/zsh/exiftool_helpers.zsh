@@ -32,8 +32,10 @@ function exiftool_migrate_gps_data {
         echo $blue"==== ($curr/$found_count) $filename ($datetime_original) is missing GPS coordinates. ===="$white
 
         # for each file, create buffer datetimes and find candidates with creation date within range
-        datetime_lower=$(gdate -d "$datetime_original -$buffer_minutes minutes" "+$datetime_format")
-        datetime_upper=$(gdate -d "$datetime_original +$buffer_minutes minutes" "+$datetime_format")
+        # datetime_lower=$(gdate -d "$datetime_original -$buffer_minutes minutes" "+$datetime_format")
+        # datetime_upper=$(gdate -d "$datetime_original +$buffer_minutes minutes" "+$datetime_format")
+        datetime_lower=$(date -j -f "$datetime_format" "-v-${buffer_minutes}M" "$datetime_original" "+$datetime_format")
+        datetime_upper=$(date -j -f "$datetime_format" "-v+${buffer_minutes}M" "$datetime_original" "+$datetime_format")
         echo "Searching for candidates between $datetime_lower and $datetime_upper (buffer=$buffer_minutes min.)"
         candidates=$(exiftool -q -json -d $datetime_format \
             -if '$GPSLatitude and $GPSLongitude' \
@@ -55,7 +57,8 @@ function exiftool_migrate_gps_data {
         closest_diff=''
         for candidate in $(jq -r 'map(.SourceFile) | join(" ")' <<< $candidates); do
             candidate_time=$(exiftool -s3 -d $datetime_format -datetimeoriginal $candidate)
-            ((diff = $(gdate -d "$datetime_original" "+%s") - $(gdate -d "$candidate_time" "+%s")))
+            # ((diff = $(gdate -d "$datetime_original" "+%s") - $(gdate -d "$candidate_time" "+%s")))
+            ((diff = $(date -j -f "$datetime_format" "$datetime_original" "+%s") - $(date -j -f "$datetime_format" "$candidate_time" "+%s")))
             if [[ "$diff" -lt 0 ]]; then ((diff = diff * -1 )); fi
 
             if [[ -z "$closest_diff" ]] || [[ "$diff" -lt "$closest_diff" ]]; then
