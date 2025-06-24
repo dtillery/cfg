@@ -48,6 +48,8 @@ brew "libxml2"
 brew "mas"
 # Fly through your shell history
 brew "mcfly"
+# Manage multiple Node.js versions
+brew "nvm"
 # General-purpose scripting language
 brew "php"
 # Modern replacement for ps written in Rust
