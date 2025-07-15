@@ -38,6 +38,8 @@ brew "htop"
 brew "httpie"
 # Command-line benchmarking tool
 brew "hyperfine"
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+brew "iperf3"
 # CLI wrapper for basic network utilities on macOS - ip command
 brew "iproute2mac"
 # Lightweight and flexible command-line JSON processor
@@ -86,6 +88,8 @@ cask "iina"
 cask "kid3"
 # Utility to move and zoom windows—on one display
 cask "moom"
+# Htop on steroids
+cask "neohtop"
 # Text editor for code, markup and prose
 cask "sublime-text"
 mas "1Blocker", id: 1365531024
