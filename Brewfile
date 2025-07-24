@@ -32,6 +32,8 @@ brew "fx"
 brew "git-delta"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# CLI email client written in Rust
+brew "himalaya"
 # Improved top (interactive process viewer)
 brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)

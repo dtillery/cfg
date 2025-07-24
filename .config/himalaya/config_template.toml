@@ -2,25 +2,22 @@
 
 [accounts.gmail]
 default = true
-email = "djtillery@gmail.com"
-display-name = "David Tillery"
+email = "jdoe@gmail.com"
+display-name = "John Doe"
 downloads-dir = "~/Downloads"
 
-folder.alias.inbox = "INBOX"
-folder.alias.sent = "[Gmail]/Sent Mail"
-folder.alias.drafts = "[Gmail]/Drafts"
-folder.alias.trash = "[Gmail]/Trash"
+backend.type = "imap"
+backend.host = "imap.gmail.com"
+backend.port = 993
+backend.login = "jdoe@gmail.com"
+backend.encryption.type = "tls"
+backend.auth.type = "password"
+backend.auth.raw = "insert_password_here"
 
-backend = "imap"
-message.send.backend = "smtp"
-imap.host = "imap.gmail.com"
-imap.port = 993
-imap.encryption = "tls"
-imap.login = "djtillery@gmail.com"
-imap.passwd.raw = "REPLACE ME"
-
-smtp.host = "smtp.gmail.com"
-smtp.port = 465
-smtp.encryption = "tls"
-smtp.login = "djtillery@gmail.com"
-smtp.passwd.raw = "REPLACE ME"
+message.send.backend.type = "smtp"
+message.send.backend.host = "smtp.gmail.com"
+message.send.backend.port = 465
+message.send.backend.login = "jdoe@gmail.com"
+message.send.backend.encryption.type = "tls"
+message.send.backend.auth.type = "password"
+message.send.backend.auth.raw = "insert_password_here"
