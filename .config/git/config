@@ -1,10 +1,5 @@
-# This is Git's per-user configuration file.
-[user]
-    name = David Tillery
-    email = djtillery@gmail.com
-
-[github]
-    user = dtillery
+[include]
+path = ./personal
 
 [color]
     branch = auto
