@@ -15,4 +15,4 @@ alias iina-plugin='/Applications/IINA.app/Contents/MacOS/iina-plugin'
 alias cat='bat --paging=never'
 
 # mariners
-alias maribers='biteme -p mlb mariners'
+alias maribers='biteme -s streameast -p mlb mariners'
