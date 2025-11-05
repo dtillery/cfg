@@ -15,14 +15,13 @@ import asyncio
 from typing import Annotated, TYPE_CHECKING
 
 from cyclopts import App, Parameter
-from cyclopts.types import ExistingDirectory
+from cyclopts.types import ExistingDirectory, File
 from samsungtvws.async_art import SamsungTVAsyncArt
 
 if TYPE_CHECKING:
     from pathlib import PosixPath
 
 FRAME_IP: str = "192.168.0.83"
-JPEG_PATH: str = "~/Pictures/frame_testing/DSC04818.jpg"
 UPLOADED_CATEGORY_ID: str = "MY-C0002"
 
 app = App()
@@ -51,9 +50,6 @@ async def info() -> None:
                 print(f"\t{setting['item']}: {setting['value']}")
             matte_list = await tv.get_matte_list(False)
             print(f"Matte Types: {", ".join([t['matte_type'] for t in matte_list])}")
-
-            # with open(JPEG_PATH, "rb") as f:
-            #     image_data = f.read()
     except Exception as e:
         print(f"Error: {e}")
     finally:
@@ -95,6 +91,12 @@ async def upload(sync_dir: ExistingDirectory ) -> None:
         print(f"Error: {e}")
     finally:
         await tv.close()
+
+
+@app.command
+async def sync(sync_dir: ExistingDirectory, sync_file: File) -> None:
+    print(sync_file)
+
 
 
 if __name__ == "__main__":
