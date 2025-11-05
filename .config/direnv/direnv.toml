@@ -8,5 +8,6 @@ exact = [
     "~/src/travelers/.envrc",
     "~/src/kkjukebox/.envrc",
     "~/src/afft/.envrc",
-    "~/src/biteme/.envrc"
+    "~/src/biteme/.envrc",
+    "~/src/simpf/.envrc"
 ]

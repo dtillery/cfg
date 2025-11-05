@@ -7,6 +7,7 @@ Shamelessly based on [this blog post](https://www.atlassian.com/git/tutorials/do
 * [ ] write cheats for
     * [ ] brew commands (leaves)
     * [ ] uv
+* Rework `uv-python-symlink` to handle upgraded versions.
 
 ## install
 
@@ -120,6 +121,12 @@ Install relevant python versions
 uv python install 3.13
 uv python install 3.12
 ```
+
+Create symlinks for versions with `uv-python-symlink` script:
+```bash
+bash scripts/python/uv-python-symlink
+```
+
 Install these via `uv tool` for python project management and tooling:
 
 * [black](https://black.readthedocs.io/en/stable/) - python code formatter
@@ -129,6 +136,7 @@ Install other useful tools:
 
 * [rexi](https://github.com/royreznik/rexi) - interactive regex evaluation tool
 * [pymusiclooper](https://github.com/arkrow/PyMusicLooper) - play/cut music loops
+* [osxphotos](https://github.com/RhetTbull/osxphotos) - query and manipulate images in Apple Photos
 
 Optionally install personal apps:
 
