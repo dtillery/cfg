@@ -35,7 +35,7 @@ uv cache prune
 uv run example.py
 
 # Example of inline script metadata
-# Add the following (incl. pound) to the top of a script, chmod 744, run ./script.py
+# Add the following (incl. pounds) to the top of a script, chmod 744, uv run ./script.py
 # from: https://treyhunner.com/2024/12/lazy-self-installing-python-scripts-with-uv/
 
 #!/usr/bin/env -S uv run --script
@@ -43,8 +43,13 @@ uv run example.py
 # requires-python = ">=3.13"
 # dependencies = [
 #   "click",
-#   "rich-click"
+#   "rich-click",
+#   "git-lib"
 # ]
+#
+# [tool.uv.sources]
+# git-lib = { git = "https://github.com/username/git-lib" }
+#
 # [tool.uv]
 # exclude-newer = "2025-02-05T00:00:00Z"
 # ///
