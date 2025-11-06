@@ -10,6 +10,7 @@
 # ///
 
 # uv run frame_art.py info
+# Photos should be 4k resolution, 3840x2160. If this is off there may be matte issues.
 
 import asyncio
 import csv
