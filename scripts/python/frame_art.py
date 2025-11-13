@@ -9,6 +9,9 @@
 # samsungtvws = { git = "https://github.com/NickWaterton/samsung-tv-ws-api" }
 # ///
 
+# using osxphotos to add ~16x9 photos to album:
+# osxphotos query --query-eval "1.7 < photo.width/photo.height < 1.8" --favorite --only-photos --quiet --mute --add-to-album "16x9 Favorites"
+
 # uv run frame_art.py info
 # Photos should be 4k resolution, 3840x2160. If this is off there may be matte issues.
 
